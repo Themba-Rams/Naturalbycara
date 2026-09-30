@@ -1,30 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  --background: #15130f;
-  --foreground: #f2ece1;
+  --background: #FAF4E7;
+  --foreground: #2E3325;
 
-  --bg-surface: #15130f;
-  --bg-surface-alt: #1a1712;
-  --surface-card: #211d18;
-  --surface-card-hover: #2a251e;
+  --bg-surface: #FAF4E7;
+  --bg-surface-alt: #F3EAD8;
 
-  --text-primary: #f2ece1;
-  --text-secondary: #d8cebd;
-  --text-muted: #a89e8e;
-  --text-muted-disabled: #6e6659;
+  --surface-card: rgba(253, 250, 242, 0.72);
+  --surface-card-hover: rgba(253, 250, 242, 0.85);
+  --surface-card-solid: #FDFAF3;
 
-  --accent: #c89b5c;
-  --accent-hover: #e0b87a;
-  --accent-contrast-text: #15130f;
+  --text-primary: #2E3325;
+  --text-secondary: #4B5940;
+  --text-muted: #7A8574;
+  --text-muted-disabled: #A8AC9C;
 
-  --success: #4c9a6d;
-  --success-bg: #1b2a20;
+  --accent: #7A8B6F;
+  --accent-hover: #647159;
+  --accent-contrast-text: #FAF4E7;
 
-  --border-subtle: rgba(242, 236, 225, 0.08);
-  --border-default: rgba(242, 236, 225, 0.14);
-  --border-accent: rgba(200, 155, 92, 0.5);
-  --overlay-scrim: rgba(21, 19, 15, 0.55);
+  --accent-secondary: #C89B5C;
+  --accent-secondary-hover: #B98A46;
+
+  --success: #4C7A50;
+  --success-bg: rgba(76, 122, 80, 0.12);
+
+  --border-subtle: rgba(58, 68, 50, 0.10);
+  --border-default: rgba(58, 68, 50, 0.18);
+  --border-accent: rgba(122, 139, 111, 0.55);
+  --overlay-scrim: rgba(46, 51, 37, 0.35);
 }
 
 @theme inline {
@@ -35,6 +40,7 @@
   --color-bg-surface-alt: var(--bg-surface-alt);
   --color-surface-card: var(--surface-card);
   --color-surface-card-hover: var(--surface-card-hover);
+  --color-surface-card-solid: var(--surface-card-solid);
 
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
@@ -44,6 +50,8 @@
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-contrast-text: var(--accent-contrast-text);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-secondary-hover: var(--accent-secondary-hover);
 
   --color-success: var(--success);
   --color-success-bg: var(--success-bg);
@@ -61,6 +69,20 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
+}
+
+.glass-card {
+  background: var(--surface-card);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(58, 68, 50, 0.12), 0 1px 2px rgba(58, 68, 50, 0.06);
+}
+.glass-card:hover {
+  background: var(--surface-card-hover);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  backdrop-filter: blur(20px) saturate(140%);
 }
 
 /* Scroll-entrance animation, used by the useInView hook. Respects

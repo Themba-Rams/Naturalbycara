@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   title: "Natural by Cara | Book an Appointment",
   description:
     "Book your next beauty or hair appointment with Natural by Cara online, any time — no more back-and-forth on WhatsApp.",
+  icons: {
+    icon: "/brand/logo.jpg",
+    apple: "/brand/logo.jpg",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -95,7 +95,7 @@ export default function DatePicker({ value, onChange, min, max }: DatePickerProp
   });
 
   return (
-    <div className="max-w-sm rounded-xl border border-border-subtle bg-surface-card px-2 py-6 shadow-2xl sm:p-6">
+    <div className="glass-card max-w-sm px-2 py-6 shadow-2xl sm:p-6">
       <div className="flex items-center justify-between">
         <button
           type="button"

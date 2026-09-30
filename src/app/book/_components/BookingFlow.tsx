@@ -183,7 +183,7 @@ export default function BookingFlow() {
 
   if (confirmedBooking) {
     return (
-      <div className="mx-auto flex max-w-md flex-col items-center rounded-xl border border-border-subtle bg-surface-card p-8 text-center shadow-2xl success-scale-in">
+      <div className="glass-card mx-auto flex max-w-md flex-col items-center p-8 text-center shadow-2xl success-scale-in">
         <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-success-bg">
           <svg
             viewBox="0 0 24 24"
@@ -300,10 +300,8 @@ export default function BookingFlow() {
                   type="button"
                   onClick={() => handleSelectService(service)}
                   aria-pressed={isSelected}
-                  className={`flex min-h-14 items-center justify-between rounded-lg border px-4 py-3 text-left transition-all duration-200 ease-out ${
-                    isSelected
-                      ? "border-accent bg-surface-card-hover ring-1 ring-accent"
-                      : "border-border-subtle bg-surface-card hover:border-border-accent hover:bg-surface-card-hover"
+                  className={`glass-card flex min-h-14 items-center justify-between px-5 py-4 text-left transition-all duration-200 ease-out ${
+                    isSelected ? "ring-1 ring-accent" : ""
                   }`}
                 >
                   <span>
@@ -314,7 +312,9 @@ export default function BookingFlow() {
                       {service.duration_minutes} min
                     </span>
                   </span>
-                  {price && <span className="font-semibold text-accent">{price}</span>}
+                  {price && (
+                    <span className="font-semibold text-accent-secondary">{price}</span>
+                  )}
                 </button>
               );
             })}
@@ -403,7 +403,7 @@ export default function BookingFlow() {
                 type="text"
                 value={clientName}
                 onChange={(e) => setClientName(e.target.value)}
-                className="min-h-12 rounded-lg border border-border-default bg-surface-card px-4 py-3 text-base text-text-primary transition-colors duration-150 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                className="min-h-12 rounded-lg border border-border-default bg-surface-card-solid px-4 py-3 text-base text-text-primary transition-colors duration-150 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                 autoComplete="name"
               />
               {formErrors.name && (
@@ -416,7 +416,7 @@ export default function BookingFlow() {
                 type="tel"
                 value={clientPhone}
                 onChange={(e) => setClientPhone(e.target.value)}
-                className="min-h-12 rounded-lg border border-border-default bg-surface-card px-4 py-3 text-base text-text-primary transition-colors duration-150 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                className="min-h-12 rounded-lg border border-border-default bg-surface-card-solid px-4 py-3 text-base text-text-primary transition-colors duration-150 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                 autoComplete="tel"
                 placeholder="e.g. 082 123 4567"
               />
