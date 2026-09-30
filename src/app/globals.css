@@ -85,6 +85,16 @@ body {
   backdrop-filter: blur(20px) saturate(140%);
 }
 
+/* Hide the native scrollbar on the mobile step-rail (it still scrolls,
+   just without the stray scrollbar track rendered under it). */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 /* Scroll-entrance animation, used by the useInView hook. Respects
    prefers-reduced-motion by starting fully visible / untransformed. */
 @media (prefers-reduced-motion: no-preference) {

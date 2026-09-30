@@ -238,7 +238,7 @@ export default function BookingFlow() {
       {/* Progress rail: vertical on desktop, compact row on mobile */}
       <nav
         aria-label="Booking progress"
-        className="flex gap-4 overflow-x-auto md:sticky md:top-8 md:w-48 md:shrink-0 md:flex-col md:gap-3 md:overflow-visible"
+        className="scrollbar-none flex gap-4 overflow-x-auto md:sticky md:top-8 md:w-48 md:shrink-0 md:flex-col md:gap-3 md:overflow-visible"
       >
         {STEP_NAMES.map((name, i) => {
           const stepNum = i + 1;
