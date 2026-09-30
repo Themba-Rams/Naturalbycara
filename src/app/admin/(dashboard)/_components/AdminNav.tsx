@@ -34,6 +34,7 @@ export default function AdminNav() {
           </Link>
         );
       })}
+      <div aria-hidden className="w-2 shrink-0 md:hidden" />
     </nav>
   );
 }
