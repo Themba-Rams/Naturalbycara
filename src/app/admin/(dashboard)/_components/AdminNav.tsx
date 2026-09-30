@@ -14,17 +14,20 @@ export default function AdminNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex flex-wrap gap-1 border-b border-zinc-200 bg-white px-4 sm:px-6">
+    <nav
+      aria-label="Admin sections"
+      className="glass-card scrollbar-none m-3 flex gap-1 overflow-x-auto p-2 sm:mx-6 md:sticky md:top-4 md:m-4 md:mr-0 md:h-fit md:w-56 md:flex-col md:overflow-visible md:p-3"
+    >
       {NAV_ITEMS.map((item) => {
         const isActive = pathname?.startsWith(item.href);
         return (
           <Link
             key={item.href}
             href={item.href}
-            className={`border-b-2 px-3 py-3 text-sm font-medium transition-colors ${
+            className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors md:rounded-lg md:px-4 md:py-2.5 ${
               isActive
-                ? "border-rose-600 text-rose-600"
-                : "border-transparent text-zinc-500 hover:text-zinc-900"
+                ? "bg-accent text-accent-contrast-text"
+                : "text-text-secondary hover:bg-bg-surface-alt hover:text-text-primary"
             }`}
           >
             {item.label}

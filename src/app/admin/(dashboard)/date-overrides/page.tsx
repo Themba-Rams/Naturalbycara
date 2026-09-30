@@ -76,54 +76,55 @@ export default function AdminDateOverridesPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h2 className="text-lg font-semibold text-zinc-900">Date Overrides</h2>
+      <h2 className="font-display text-xl font-semibold text-text-primary">Date Overrides</h2>
 
       <form
         onSubmit={handleAdd}
-        className="flex flex-col gap-3 rounded-lg border border-zinc-200 bg-white p-4"
+        className="flex flex-col gap-4 rounded-xl border border-border-subtle bg-surface-card-solid p-4 shadow-sm"
       >
-        <label className="flex flex-col gap-1 text-sm text-zinc-700">
+        <label className="flex flex-col gap-1 text-sm text-text-secondary">
           Date
           <input
             type="date"
             value={date}
             min={todayLocalDateString()}
             onChange={(e) => setDate(e.target.value)}
-            className="rounded-lg border border-zinc-300 px-3 py-2 text-sm"
+            className="w-full max-w-xs rounded-lg border border-border-default bg-surface-card-solid px-3 py-2 text-sm text-text-primary outline-none transition-colors focus:border-border-accent focus:ring-2 focus:ring-accent/30"
           />
         </label>
-        <label className="flex items-center gap-2 text-sm text-zinc-700">
+        <label className="flex items-center gap-2 text-sm text-text-secondary">
           <input
             type="checkbox"
             checked={isClosed}
             onChange={(e) => setIsClosed(e.target.checked)}
+            className="h-4 w-4 rounded border-border-default text-accent accent-accent"
           />
           Closed all day
         </label>
         {!isClosed && (
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <input
               type="time"
               value={startTime}
               onChange={(e) => setStartTime(e.target.value)}
-              className="rounded-lg border border-zinc-300 px-2 py-1 text-sm"
+              className="rounded-lg border border-border-default bg-surface-card-solid px-2 py-1.5 text-sm text-text-primary outline-none transition-colors focus:border-border-accent focus:ring-2 focus:ring-accent/30"
             />
-            <span className="text-sm text-zinc-500">to</span>
+            <span className="text-sm text-text-muted">to</span>
             <input
               type="time"
               value={endTime}
               onChange={(e) => setEndTime(e.target.value)}
-              className="rounded-lg border border-zinc-300 px-2 py-1 text-sm"
+              className="rounded-lg border border-border-default bg-surface-card-solid px-2 py-1.5 text-sm text-text-primary outline-none transition-colors focus:border-border-accent focus:ring-2 focus:ring-accent/30"
             />
           </div>
         )}
-        <label className="flex flex-col gap-1 text-sm text-zinc-700">
+        <label className="flex flex-col gap-1 text-sm text-text-secondary">
           Note (optional)
           <input
             type="text"
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            className="rounded-lg border border-zinc-300 px-3 py-2 text-sm"
+            className="w-full max-w-sm rounded-lg border border-border-default bg-surface-card-solid px-3 py-2 text-sm text-text-primary outline-none transition-colors focus:border-border-accent focus:ring-2 focus:ring-accent/30"
             placeholder="e.g. Public holiday"
           />
         </label>
@@ -131,29 +132,29 @@ export default function AdminDateOverridesPage() {
         <button
           type="submit"
           disabled={submitting}
-          className="self-start rounded-full bg-rose-600 px-6 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-rose-700 disabled:cursor-not-allowed disabled:opacity-60"
+          className="self-start rounded-full bg-accent px-6 py-2 text-sm font-semibold text-accent-contrast-text shadow-sm transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-60"
         >
           {submitting ? "Adding…" : "Add override"}
         </button>
       </form>
 
       {error && <p className="text-sm text-red-600">{error}</p>}
-      {overrides === null && !error && <p className="text-sm text-zinc-500">Loading…</p>}
+      {overrides === null && !error && <p className="text-sm text-text-muted">Loading…</p>}
       {overrides !== null && overrides.length === 0 && (
-        <p className="text-sm text-zinc-500">No date overrides yet.</p>
+        <p className="text-sm text-text-muted">No date overrides yet.</p>
       )}
       {overrides !== null && overrides.length > 0 && (
         <ul className="flex flex-col gap-2">
           {overrides.map((override) => (
             <li
               key={override.id}
-              className="flex items-center justify-between rounded-lg border border-zinc-200 bg-white px-4 py-3"
+              className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-border-subtle bg-surface-card-solid px-4 py-3 shadow-sm"
             >
               <div>
-                <p className="font-medium text-zinc-900">
+                <p className="font-medium text-text-primary">
                   {formatDateForDisplay(override.date)}
                 </p>
-                <p className="text-sm text-zinc-500">
+                <p className="text-sm text-text-muted">
                   {override.is_closed
                     ? "Closed all day"
                     : `${override.start_time?.slice(0, 5)} – ${override.end_time?.slice(0, 5)}`}

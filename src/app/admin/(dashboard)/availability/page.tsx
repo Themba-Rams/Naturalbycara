@@ -139,22 +139,26 @@ export default function AdminAvailabilityPage() {
     return <p className="text-sm text-red-600">{error}</p>;
   }
   if (!days) {
-    return <p className="text-sm text-zinc-500">Loading…</p>;
+    return <p className="text-sm text-text-muted">Loading…</p>;
   }
 
   return (
     <div className="flex flex-col gap-6">
-      <h2 className="text-lg font-semibold text-zinc-900">Weekly Availability</h2>
+      <h2 className="font-display text-xl font-semibold text-text-primary">Weekly Availability</h2>
       <div className="flex flex-col gap-4">
         {days.map((day, weekday) => (
-          <div key={weekday} className="rounded-lg border border-zinc-200 bg-white p-4">
+          <div
+            key={weekday}
+            className="rounded-xl border border-border-subtle bg-surface-card-solid p-4 shadow-sm"
+          >
             <div className="flex items-center justify-between">
-              <span className="font-medium text-zinc-900">{WEEKDAY_LABELS[weekday]}</span>
-              <label className="flex items-center gap-2 text-sm text-zinc-600">
+              <span className="font-medium text-text-primary">{WEEKDAY_LABELS[weekday]}</span>
+              <label className="flex items-center gap-2 text-sm text-text-secondary">
                 <input
                   type="checkbox"
                   checked={day.open}
                   onChange={(e) => updateDay(weekday, { open: e.target.checked })}
+                  className="h-4 w-4 rounded border-border-default text-accent accent-accent"
                 />
                 Open
               </label>
@@ -162,23 +166,23 @@ export default function AdminAvailabilityPage() {
             {day.open && (
               <div className="mt-3 flex flex-col gap-2">
                 {day.ranges.map((range, rangeIndex) => (
-                  <div key={rangeIndex} className="flex items-center gap-2">
+                  <div key={rangeIndex} className="flex flex-wrap items-center gap-2">
                     <input
                       type="time"
                       value={range.start}
                       onChange={(e) =>
                         updateRange(weekday, rangeIndex, { start: e.target.value })
                       }
-                      className="rounded-lg border border-zinc-300 px-2 py-1 text-sm"
+                      className="rounded-lg border border-border-default bg-surface-card-solid px-2 py-1.5 text-sm text-text-primary outline-none transition-colors focus:border-border-accent focus:ring-2 focus:ring-accent/30"
                     />
-                    <span className="text-sm text-zinc-500">to</span>
+                    <span className="text-sm text-text-muted">to</span>
                     <input
                       type="time"
                       value={range.end}
                       onChange={(e) =>
                         updateRange(weekday, rangeIndex, { end: e.target.value })
                       }
-                      className="rounded-lg border border-zinc-300 px-2 py-1 text-sm"
+                      className="rounded-lg border border-border-default bg-surface-card-solid px-2 py-1.5 text-sm text-text-primary outline-none transition-colors focus:border-border-accent focus:ring-2 focus:ring-accent/30"
                     />
                     {day.ranges.length > 1 && (
                       <button
@@ -194,7 +198,7 @@ export default function AdminAvailabilityPage() {
                 <button
                   type="button"
                   onClick={() => addRange(weekday)}
-                  className="self-start text-sm font-medium text-rose-600 hover:text-rose-800"
+                  className="self-start text-sm font-medium text-accent-secondary hover:text-accent-secondary-hover"
                 >
                   + Add another time range
                 </button>
@@ -205,12 +209,16 @@ export default function AdminAvailabilityPage() {
       </div>
 
       {error && <p className="text-sm text-red-600">{error}</p>}
-      {saveMessage && <p className="text-sm text-green-700">{saveMessage}</p>}
+      {saveMessage && (
+        <p className="w-fit rounded-lg bg-success-bg px-3 py-1.5 text-sm font-medium text-success">
+          {saveMessage}
+        </p>
+      )}
       <button
         type="button"
         onClick={handleSave}
         disabled={saving}
-        className="self-start rounded-full bg-rose-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-rose-700 disabled:cursor-not-allowed disabled:opacity-60"
+        className="self-start rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-contrast-text shadow-sm transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-60"
       >
         {saving ? "Saving…" : "Save changes"}
       </button>

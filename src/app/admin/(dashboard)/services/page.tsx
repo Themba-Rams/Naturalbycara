@@ -143,34 +143,37 @@ export default function AdminServicesPage() {
     }
   }
 
+  const inputClasses =
+    "rounded-lg border border-border-default bg-surface-card-solid px-3 py-2 text-sm text-text-primary outline-none transition-colors focus:border-border-accent focus:ring-2 focus:ring-accent/30";
+
   return (
     <div className="flex flex-col gap-6">
-      <h2 className="text-lg font-semibold text-zinc-900">Services</h2>
+      <h2 className="font-display text-xl font-semibold text-text-primary">Services</h2>
 
       <form
         onSubmit={handleAdd}
-        className="flex flex-col gap-3 rounded-lg border border-zinc-200 bg-white p-4 sm:flex-row sm:items-end sm:flex-wrap"
+        className="flex flex-col gap-4 rounded-xl border border-border-subtle bg-surface-card-solid p-4 shadow-sm sm:flex-row sm:flex-wrap sm:items-end"
       >
-        <label className="flex flex-col gap-1 text-sm text-zinc-700">
+        <label className="flex flex-col gap-1 text-sm text-text-secondary">
           Name
           <input
             type="text"
             value={addForm.name}
             onChange={(e) => setAddForm((f) => ({ ...f, name: e.target.value }))}
-            className="rounded-lg border border-zinc-300 px-3 py-2 text-sm"
+            className={inputClasses}
           />
         </label>
-        <label className="flex flex-col gap-1 text-sm text-zinc-700">
+        <label className="flex flex-col gap-1 text-sm text-text-secondary">
           Duration (min)
           <input
             type="number"
             min={1}
             value={addForm.durationMinutes}
             onChange={(e) => setAddForm((f) => ({ ...f, durationMinutes: e.target.value }))}
-            className="w-28 rounded-lg border border-zinc-300 px-3 py-2 text-sm"
+            className={`w-28 ${inputClasses}`}
           />
         </label>
-        <label className="flex flex-col gap-1 text-sm text-zinc-700">
+        <label className="flex flex-col gap-1 text-sm text-text-secondary">
           Price (optional)
           <input
             type="number"
@@ -178,21 +181,22 @@ export default function AdminServicesPage() {
             step="0.01"
             value={addForm.price}
             onChange={(e) => setAddForm((f) => ({ ...f, price: e.target.value }))}
-            className="w-28 rounded-lg border border-zinc-300 px-3 py-2 text-sm"
+            className={`w-28 ${inputClasses}`}
           />
         </label>
-        <label className="flex items-center gap-2 text-sm text-zinc-700">
+        <label className="flex items-center gap-2 text-sm text-text-secondary">
           <input
             type="checkbox"
             checked={addForm.active}
             onChange={(e) => setAddForm((f) => ({ ...f, active: e.target.checked }))}
+            className="h-4 w-4 rounded border-border-default text-accent accent-accent"
           />
           Active
         </label>
         <button
           type="submit"
           disabled={adding}
-          className="rounded-full bg-rose-600 px-6 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-rose-700 disabled:cursor-not-allowed disabled:opacity-60"
+          className="rounded-full bg-accent px-6 py-2 text-sm font-semibold text-accent-contrast-text shadow-sm transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-60"
         >
           {adding ? "Adding…" : "Add service"}
         </button>
@@ -200,9 +204,9 @@ export default function AdminServicesPage() {
       </form>
 
       {error && <p className="text-sm text-red-600">{error}</p>}
-      {services === null && !error && <p className="text-sm text-zinc-500">Loading…</p>}
+      {services === null && !error && <p className="text-sm text-text-muted">Loading…</p>}
       {services !== null && services.length === 0 && (
-        <p className="text-sm text-zinc-500">No services yet.</p>
+        <p className="text-sm text-text-muted">No services yet.</p>
       )}
 
       {services !== null && services.length > 0 && (
@@ -210,11 +214,11 @@ export default function AdminServicesPage() {
           {services.map((service) => (
             <li
               key={service.id}
-              className="rounded-lg border border-zinc-200 bg-white p-4"
+              className="rounded-xl border border-border-subtle bg-surface-card-solid p-4 shadow-sm"
             >
               {editingId === service.id ? (
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:flex-wrap">
-                  <label className="flex flex-col gap-1 text-sm text-zinc-700">
+                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
+                  <label className="flex flex-col gap-1 text-sm text-text-secondary">
                     Name
                     <input
                       type="text"
@@ -222,10 +226,10 @@ export default function AdminServicesPage() {
                       onChange={(e) =>
                         setEditForm((f) => ({ ...f, name: e.target.value }))
                       }
-                      className="rounded-lg border border-zinc-300 px-3 py-2 text-sm"
+                      className={inputClasses}
                     />
                   </label>
-                  <label className="flex flex-col gap-1 text-sm text-zinc-700">
+                  <label className="flex flex-col gap-1 text-sm text-text-secondary">
                     Duration (min)
                     <input
                       type="number"
@@ -234,10 +238,10 @@ export default function AdminServicesPage() {
                       onChange={(e) =>
                         setEditForm((f) => ({ ...f, durationMinutes: e.target.value }))
                       }
-                      className="w-28 rounded-lg border border-zinc-300 px-3 py-2 text-sm"
+                      className={`w-28 ${inputClasses}`}
                     />
                   </label>
-                  <label className="flex flex-col gap-1 text-sm text-zinc-700">
+                  <label className="flex flex-col gap-1 text-sm text-text-secondary">
                     Price
                     <input
                       type="number"
@@ -247,16 +251,17 @@ export default function AdminServicesPage() {
                       onChange={(e) =>
                         setEditForm((f) => ({ ...f, price: e.target.value }))
                       }
-                      className="w-28 rounded-lg border border-zinc-300 px-3 py-2 text-sm"
+                      className={`w-28 ${inputClasses}`}
                     />
                   </label>
-                  <label className="flex items-center gap-2 text-sm text-zinc-700">
+                  <label className="flex items-center gap-2 text-sm text-text-secondary">
                     <input
                       type="checkbox"
                       checked={editForm.active}
                       onChange={(e) =>
                         setEditForm((f) => ({ ...f, active: e.target.checked }))
                       }
+                      className="h-4 w-4 rounded border-border-default text-accent accent-accent"
                     />
                     Active
                   </label>
@@ -265,14 +270,14 @@ export default function AdminServicesPage() {
                       type="button"
                       onClick={() => handleSaveEdit(service.id)}
                       disabled={saving}
-                      className="rounded-full bg-rose-600 px-4 py-2 text-sm font-semibold text-white hover:bg-rose-700 disabled:opacity-60"
+                      className="rounded-full bg-accent px-4 py-2 text-sm font-semibold text-accent-contrast-text transition-colors hover:bg-accent-hover disabled:opacity-60"
                     >
                       {saving ? "Saving…" : "Save"}
                     </button>
                     <button
                       type="button"
                       onClick={() => setEditingId(null)}
-                      className="rounded-full border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50"
+                      className="rounded-full border border-border-default px-4 py-2 text-sm font-medium text-text-secondary transition-colors hover:border-border-accent hover:text-text-primary"
                     >
                       Cancel
                     </button>
@@ -282,15 +287,15 @@ export default function AdminServicesPage() {
               ) : (
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
-                    <p className="font-medium text-zinc-900">
+                    <p className="font-medium text-text-primary">
                       {service.name}
                       {!service.active && (
-                        <span className="ml-2 rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-500">
+                        <span className="ml-2 rounded-full bg-bg-surface-alt px-2 py-0.5 text-xs font-medium text-text-muted">
                           Inactive
                         </span>
                       )}
                     </p>
-                    <p className="text-sm text-zinc-500">
+                    <p className="text-sm text-text-muted">
                       {service.duration_minutes} min
                       {service.price !== null ? ` · R${service.price}` : ""}
                     </p>
@@ -299,14 +304,14 @@ export default function AdminServicesPage() {
                     <button
                       type="button"
                       onClick={() => handleToggleActive(service)}
-                      className="text-sm font-medium text-zinc-600 hover:text-zinc-900"
+                      className="text-sm font-medium text-text-secondary hover:text-text-primary"
                     >
                       {service.active ? "Deactivate" : "Activate"}
                     </button>
                     <button
                       type="button"
                       onClick={() => startEdit(service)}
-                      className="text-sm font-medium text-rose-600 hover:text-rose-800"
+                      className="text-sm font-medium text-accent-secondary hover:text-accent-secondary-hover"
                     >
                       Edit
                     </button>

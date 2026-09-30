@@ -22,7 +22,7 @@ export default function LogoutButton() {
       type="button"
       onClick={handleLogout}
       disabled={loggingOut}
-      className="text-sm font-medium text-zinc-500 hover:text-zinc-900"
+      className="rounded-full border border-border-default px-4 py-2 text-sm font-medium text-text-secondary transition-colors hover:border-border-accent hover:text-text-primary disabled:cursor-not-allowed disabled:opacity-60"
     >
       {loggingOut ? "Logging out…" : "Log out"}
     </button>

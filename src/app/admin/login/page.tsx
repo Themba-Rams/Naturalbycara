@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -38,18 +39,29 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center bg-zinc-50 px-6">
-      <div className="w-full max-w-sm rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
-        <h1 className="text-lg font-semibold text-zinc-900">Natural by Cara</h1>
-        <p className="mt-1 text-sm text-zinc-500">Admin login</p>
+    <div className="flex flex-1 flex-col items-center justify-center bg-background px-6 py-16">
+      <div className="glass-card w-full max-w-sm p-8">
+        <div className="flex flex-col items-center text-center">
+          <Image
+            src="/brand/logo.jpg"
+            alt="Natural By Cara logo"
+            width={56}
+            height={56}
+            className="h-14 w-14 rounded-full border border-border-subtle object-cover"
+          />
+          <h1 className="mt-4 font-display text-2xl font-semibold text-text-primary">
+            Natural By Cara
+          </h1>
+          <p className="mt-1 text-sm text-text-muted">Admin login</p>
+        </div>
         <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
-          <label className="flex flex-col gap-1 text-sm text-zinc-700">
+          <label className="flex flex-col gap-1 text-sm text-text-secondary">
             Password
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="rounded-lg border border-zinc-300 px-4 py-3 text-base"
+              className="rounded-lg border border-border-default bg-surface-card-solid px-4 py-3 text-base text-text-primary outline-none transition-colors focus:border-border-accent focus:ring-2 focus:ring-accent/30"
               autoComplete="current-password"
               autoFocus
               required
@@ -59,7 +71,7 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="rounded-full bg-rose-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-rose-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="rounded-full bg-accent px-6 py-3 text-base font-semibold text-accent-contrast-text shadow-sm transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-60"
           >
             {submitting ? "Logging in…" : "Log in"}
           </button>

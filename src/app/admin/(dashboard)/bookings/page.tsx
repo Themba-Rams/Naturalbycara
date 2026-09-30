@@ -60,59 +60,60 @@ export default function AdminBookingsPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-zinc-900">Bookings</h2>
-        <label className="flex items-center gap-2 text-sm text-zinc-600">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h2 className="font-display text-xl font-semibold text-text-primary">Bookings</h2>
+        <label className="flex items-center gap-2 text-sm text-text-secondary">
           <input
             type="checkbox"
             checked={showAll}
             onChange={(e) => setShowAll(e.target.checked)}
+            className="h-4 w-4 rounded border-border-default text-accent accent-accent"
           />
           Include past &amp; cancelled
         </label>
       </div>
 
       {error && <p className="text-sm text-red-600">{error}</p>}
-      {bookings === null && !error && <p className="text-sm text-zinc-500">Loading…</p>}
+      {bookings === null && !error && <p className="text-sm text-text-muted">Loading…</p>}
       {bookings !== null && bookings.length === 0 && (
-        <p className="text-sm text-zinc-500">No bookings to show.</p>
+        <p className="text-sm text-text-muted">No bookings to show.</p>
       )}
 
       {bookings !== null && bookings.length > 0 && (
-        <div className="overflow-x-auto rounded-lg border border-zinc-200 bg-white">
+        <div className="overflow-x-auto rounded-xl border border-border-subtle bg-surface-card-solid shadow-sm">
           <table className="w-full min-w-[640px] text-left text-sm">
-            <thead className="bg-zinc-50 text-zinc-500">
+            <thead className="border-b border-border-subtle bg-bg-surface-alt text-text-secondary">
               <tr>
-                <th className="px-4 py-2 font-medium">Client</th>
-                <th className="px-4 py-2 font-medium">Phone</th>
-                <th className="px-4 py-2 font-medium">Service</th>
-                <th className="px-4 py-2 font-medium">Date</th>
-                <th className="px-4 py-2 font-medium">Time</th>
-                <th className="px-4 py-2 font-medium">Status</th>
-                <th className="px-4 py-2 font-medium"></th>
+                <th className="px-4 py-3 font-medium">Client</th>
+                <th className="px-4 py-3 font-medium">Phone</th>
+                <th className="px-4 py-3 font-medium">Service</th>
+                <th className="px-4 py-3 font-medium">Date</th>
+                <th className="px-4 py-3 font-medium">Time</th>
+                <th className="px-4 py-3 font-medium">Status</th>
+                <th className="px-4 py-3 font-medium"></th>
               </tr>
             </thead>
             <tbody>
-              {bookings.map((booking) => (
+              {bookings.map((booking, index) => (
                 <tr
                   key={booking.id}
-                  className={`border-t border-zinc-100 ${
-                    booking.status === "cancelled" ? "text-zinc-400" : "text-zinc-900"
-                  }`}
+                  className={`border-t border-border-subtle ${
+                    index % 2 === 1 ? "bg-bg-surface-alt/40" : ""
+                  } ${booking.status === "cancelled" ? "text-text-muted" : "text-text-primary"}`}
                 >
                   <td
-                    className={`px-4 py-2 ${
+                    className={`px-4 py-3 ${
                       booking.status === "cancelled" ? "line-through" : ""
                     }`}
                   >
                     {booking.client_name}
                   </td>
-                  <td className="px-4 py-2">{booking.client_phone}</td>
-                  <td className="px-4 py-2">{booking.service.name}</td>
-                  <td className="px-4 py-2">{formatDateForDisplay(booking.booking_date)}</td>
-                  <td className="px-4 py-2">{formatTimeForDisplay(booking.start_time)}</td>
-                  <td className="px-4 py-2 capitalize">{booking.status}</td>
-                  <td className="px-4 py-2">
+                  <td className="px-4 py-3">{booking.client_phone}</td>
+                  <td className="px-4 py-3">{booking.service.name}</td>
+                  <td className="px-4 py-3">{formatDateForDisplay(booking.booking_date)}</td>
+                  <td className="px-4 py-3">{formatTimeForDisplay(booking.start_time)}</td>
+                  <td className="px-4 py-3 capitalize">{booking.status}</td>
+                  <td className="px-4 py-3">
                     {booking.status === "confirmed" && (
                       <button
                         type="button"
