@@ -1,33 +1,145 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5efe3;
-  --foreground: #2f3629;
+  --background: #15130f;
+  --foreground: #f2ece1;
 
-  --cream: #f5efe3;
-  --cream-dark: #ece2cf;
-  --sage: #7a8b6f;
-  --sage-dark: #64735a;
-  --olive: #4b5940;
-  --olive-deep: #3a4432;
+  --bg-surface: #15130f;
+  --bg-surface-alt: #1a1712;
+  --surface-card: #211d18;
+  --surface-card-hover: #2a251e;
+
+  --text-primary: #f2ece1;
+  --text-secondary: #d8cebd;
+  --text-muted: #a89e8e;
+  --text-muted-disabled: #6e6659;
+
+  --accent: #c89b5c;
+  --accent-hover: #e0b87a;
+  --accent-contrast-text: #15130f;
+
+  --success: #4c9a6d;
+  --success-bg: #1b2a20;
+
+  --border-subtle: rgba(242, 236, 225, 0.08);
+  --border-default: rgba(242, 236, 225, 0.14);
+  --border-accent: rgba(200, 155, 92, 0.5);
+  --overlay-scrim: rgba(21, 19, 15, 0.55);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-cream: var(--cream);
-  --color-cream-dark: var(--cream-dark);
-  --color-sage: var(--sage);
-  --color-sage-dark: var(--sage-dark);
-  --color-olive: var(--olive);
-  --color-olive-deep: var(--olive-deep);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-cormorant);
+
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-surface-alt: var(--bg-surface-alt);
+  --color-surface-card: var(--surface-card);
+  --color-surface-card-hover: var(--surface-card-hover);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-muted-disabled: var(--text-muted-disabled);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-contrast-text: var(--accent-contrast-text);
+
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+  --color-border-accent: var(--border-accent);
+  --color-overlay-scrim: var(--overlay-scrim);
+
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-fraunces);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
+}
+
+/* Scroll-entrance animation, used by the useInView hook. Respects
+   prefers-reduced-motion by starting fully visible / untransformed. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 550ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 550ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Booking step crossfade + slide. */
+@media (prefers-reduced-motion: no-preference) {
+  .step-enter-forward {
+    animation: step-in-forward 350ms ease-in-out;
+  }
+  .step-enter-back {
+    animation: step-in-back 350ms ease-in-out;
+  }
+}
+
+@keyframes step-in-forward {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes step-in-back {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Success checkmark draw-in. */
+@media (prefers-reduced-motion: no-preference) {
+  .success-check-path {
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: draw-check 600ms ease-out forwards;
+  }
+  .success-scale-in {
+    animation: success-scale 400ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+}
+
+@keyframes draw-check {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes success-scale {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
 }
