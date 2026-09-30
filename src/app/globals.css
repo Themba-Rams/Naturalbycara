@@ -95,6 +95,29 @@ body {
   display: none;
 }
 
+/* Fade the edges of a horizontally-scrollable strip (mobile nav pills)
+   so a partially-visible item tapers off instead of hard-clipping
+   against the container's rounded corner. Mobile-only: on desktop the
+   same element becomes a non-scrolling vertical sidebar. */
+@media (max-width: 767px) {
+  .scroll-fade-x {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 16px,
+      black calc(100% - 16px),
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 16px,
+      black calc(100% - 16px),
+      transparent
+    );
+  }
+}
+
 /* Scroll-entrance animation, used by the useInView hook. Respects
    prefers-reduced-motion by starting fully visible / untransformed. */
 @media (prefers-reduced-motion: no-preference) {

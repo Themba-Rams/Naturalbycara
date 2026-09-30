@@ -16,7 +16,7 @@ export default function AdminNav() {
   return (
     <nav
       aria-label="Admin sections"
-      className="glass-card scrollbar-none m-3 flex gap-1 overflow-x-auto p-2 sm:mx-6 md:sticky md:top-4 md:m-4 md:mr-0 md:h-fit md:w-56 md:flex-col md:overflow-visible md:p-3"
+      className="glass-card scrollbar-none scroll-fade-x m-3 flex gap-1 overflow-x-auto p-2 sm:mx-6 md:sticky md:top-4 md:m-4 md:mr-0 md:h-fit md:w-56 md:flex-col md:overflow-visible md:p-3"
     >
       {NAV_ITEMS.map((item) => {
         const isActive = pathname?.startsWith(item.href);
